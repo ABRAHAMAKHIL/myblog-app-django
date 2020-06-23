@@ -1,0 +1,62 @@
+
+{% extends "base.html" %} 
+{% block content %}
+   
+  <!-- Masthead -->
+  <style>
+       .head_text {
+        color: white;
+    }
+
+    .card {
+
+        box-shadow: 0 16px 48px #E3E7EB;
+    }
+
+  </style>
+    <section class="masthead" id="home-section">
+      <div class="container-1">
+        <div class="col-left-1">
+          <h4 class="masthead__title">What new Technology does is create new opportunities to do a job that customers want done</h4>
+          <h4 class="masthead__paragraph">You can't connect the dots looking forward; you can only connect them looking backwards
+                                                                                                                            --Steve Jobs</h4><br>
+          
+        </div>
+        <div class="col-right-1">
+          <img class="container__img-1" src="https://i.ibb.co/R9ZRtnz/img-1-640.png"/>  
+        </div>
+      </div>
+    </section>
+    
+  <!-- Features -->
+    
+    <section class="features" id="features-section">
+      <div class="content">
+        <h3 class="content__title">Features</h3>
+        <hr class="hr"/>
+     
+        <div class="container">
+          <div class="row">
+              <!-- Blog Entries Column -->
+              <div class="col-md-8 mt-3 left">
+                  {% for post in post_list %}
+                  <div class="card mb-4">
+                      <div class="card-body">
+                          <h2 class="card-title">{{ post.Title }}</h2>
+                          <p class="card-text text-muted h6">{{ post.Writer }} | {{ post.Created_On}} </p>
+                          <p class="card-text">{{post.model_pic}}</p>
+
+                          <p class="card-text">{{post.Content|slice:":200" }}</p>
+                          <a href="{% url 'post_detail' post.Key %}" class="btn btn-primary">Read More &rarr;</a>
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+              {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+          </div>
+      </div>
+      </div>
+    </section>
+{% endblock %}
+ 
+  
